@@ -23,7 +23,7 @@ The IFsCore follows the same directory structure as the development version of I
 
 # Getting Started
 
-
+Follow and create a same folder structure locally (IFsCore). With IFs development version, rebuild the base to a historical year (e.g., 1995), then copy and past required files to IFsCore. Now your model is set up and ready to be tuned.
 
 
 # Contributing
