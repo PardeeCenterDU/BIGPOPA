@@ -24,5 +24,5 @@ The IFsCore follows the same directory structure as the development version of I
 
 # Contributing
 We welcome contributions and feedback. Here's how you can help:
-- [Report issues](<[https://github.com/PardeeCenterDU/IFsAutoTune/issues]>)  
+- [Report issues](<https://github.com/PardeeCenterDU/IFsAutoTune/issues>)  
 - [Contact us](<yutang.xiong@du.edu>)
