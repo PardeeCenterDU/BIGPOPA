@@ -17,6 +17,7 @@ The IFsCore follows the same directory structure as the development version of I
   * [Scenario](./IFsCore/Scenario) empty by default, Working.sce will be added to run parameter & coefficient tuning during each model run
   * [Parquetnetcoreapp2.2](./IFsCore/Parquetnetcoreapp2.2) a .NET programe (.dll) that reads the .parquet file and convert it into CSV format
   * [Output](./IFsCore/Output) this is a default, yet optional, output folder that stores each model run's results and settings under the same place
+
 Now your model is set up and ready to be tuned.
 ## Input Set up
 Using the ScenarioGuide file, you can toggle the parameters/coefficients to be tested in IFs historical validation. Other options are also available, such as limits & steps.
