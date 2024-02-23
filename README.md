@@ -11,6 +11,7 @@ With user-selected parameters and coefficients along with their corresponding in
 The IFsCore follows the same directory structure as the development version of IFs, but with a minimal set of files that ensures the model run. With the development version of IFs, please run the model with a base year of 1995 to do the historical validation & tuning.
 
 * [IFsCore](./IFsCore)
+  * [IFsInit](./IFsCore/IFsInit.db) this is the IFsInit.db file after the model rebuilt (e.g., 1995), make sure you have the settings right
   * [DATA](./IFsCore/DATA) make sure you have SAMBase.db file under the DATA folder
   * [netcoreapp2.2](./IFsCore/netcoreapp2.2) this is where the core model code lives
   * [RUNFILES](./IFsCore/RUNFILES) for safty, put all your files under the RUNFILES folder after model rebuilt (e.g., 1995)
@@ -21,6 +22,9 @@ The IFsCore follows the same directory structure as the development version of I
 * [README.md](./README.md)
 
 # Getting Started
+
+
+
 
 # Contributing
 We welcome contributions and feedback. Here's how you can help:
