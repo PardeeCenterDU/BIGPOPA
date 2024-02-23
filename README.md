@@ -24,4 +24,4 @@ Using the ScenarioGuide file, you can toggle the parameters/coefficients to be t
 # Contributing
 We welcome contributions and feedback. Here's how you can help:
 - [Report issues](<https://github.com/PardeeCenterDU/IFsAutoTune/issues>)  
-- [Contact us](<yutang.xiong@du.edu>)
+- [Contact us](mailto:yutang.xiong@du.edu)
