@@ -15,8 +15,9 @@ The IFsCore follows the same directory structure as the development version of I
   * [netcoreapp2.2](./IFsCore/netcoreapp2.2) this is where the core model code lives
   * [RUNFILES](./IFsCore/RUNFILES) for safty, put all your files under the RUNFILES folder after model rebuilt (e.g., 1995)
   * [Scenario](./IFsCore/Scenario) empty by default, Working.sce will be added to run parameter & coefficient tuning during each model run
-  * [Parquetnetcoreapp2.2](./IFsCore/Parquetnetcoreapp2.2) a .NET programe (.dll) that reads the .parquet file and convert it into CSV format
-  * [Output](./IFsCore/Output) this is a default, yet optional, output folder that stores each model run's results and settings under the same place
+
+* [Parquetnetcoreapp2.2](./IFsCore/Parquetnetcoreapp2.2) a .NET programe (.dll) that reads the .parquet file and convert it into CSV format
+* [Output](./IFsCore/Output) this is a default, yet optional, output folder that stores each model run's results and settings under the same place
 
 * [README.md](./README.md)
 
