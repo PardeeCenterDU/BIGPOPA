@@ -4,10 +4,11 @@ With user-selected parameters and coefficients along with their corresponding in
 # Notes
 - Current testing runs on IFs8.10 with a base year of 1995.
 
+# Getting Started
 
+Follow and create a same folder structure locally (IFsCore). With IFs development version, rebuild the base to a historical year (e.g., 1995), then copy and past required files to IFsCore. Now your model is set up and ready to be tuned.
 
-# IFsCore folder structure
-
+### IFsCore folder structure
 The IFsCore follows the same directory structure as the development version of IFs, but with a minimal set of files that ensures the model run. With the development version of IFs, please run the model with a base year of 1995 to do the historical validation & tuning.
 
 * [IFsCore](./IFsCore)
@@ -18,13 +19,6 @@ The IFsCore follows the same directory structure as the development version of I
   * [Scenario](./IFsCore/Scenario) empty by default, Working.sce will be added to run parameter & coefficient tuning during each model run
   * [Parquetnetcoreapp2.2](./IFsCore/Parquetnetcoreapp2.2) a .NET programe (.dll) that reads the .parquet file and convert it into CSV format
   * [Output](./IFsCore/Output) this is a default, yet optional, output folder that stores each model run's results and settings under the same place
-
-* [README.md](./README.md)
-
-# Getting Started
-
-Follow and create a same folder structure locally (IFsCore). With IFs development version, rebuild the base to a historical year (e.g., 1995), then copy and past required files to IFsCore. Now your model is set up and ready to be tuned.
-
 
 # Contributing
 We welcome contributions and feedback. Here's how you can help:
