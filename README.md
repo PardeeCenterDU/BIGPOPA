@@ -24,7 +24,17 @@ Using the ScenarioGuide file, you can toggle the parameters/coefficients to be t
 
 #### Multithreading
 It is possible to run multiple IFs model runs in parallel. 
-
+##### Method 1. Through session numbers in IFs CMD
+1. Under RUNFILES folder, create "SessionXX" (XX represents session ID, e.g., Session00 is session 0) folder, and put following 17 files under the folder: AnalFunc.db; DataDict.db; IFs.db; IFsBase.run.db; IFsBaseHist.run.db; IFsHistSeries.db; IFsPop.db; IFsPopHist.db; IFsPopWork.db; IFsSmoking.db; IFsVar.db; IFsWVSCohort.db; Provinces.db; SAMBase.db; SAMWorking.db; TablFunc.db; Working.run.db
+2. Under Scenario folder, create corresponding folders for each session (e.g., Session00 for session 0). Working.sce for each scenario should be put under this folder.
+3. When running the model, input session number in the model call. Thus, in the default model call, </br>
+   'dotnet.exe "C:/Users/Public/IFsCore/netcoreapp2.2/ifs.dll" 5 2030 **-1** false false 1 False --log ifslog.txt'</br>
+   **-1** should be switched with the actual session number. Hence, for session 0, the right call would be</br>
+   'dotnet.exe "C:/Users/Public/IFsCore/netcoreapp2.2/ifs.dll" 5 2030 **0** false false 1 False --log ifslog.txt'
+   
+Through this method, you are able to retain the original files under the RUNFILES folder. Each model run will only occur under its associated session number. However, you will need to make changes to python classes and functions so that output of each model are properly handled. 
+##### Method 2. Setting up multiple IFsCore in the device
+This is a simpler approach as you are just copying and pasting the same IFsCore structure. In the model initilization stage in Python, you will have to input different paths. The downside of this approach is you are wasting extra storage space.
 
 # Contributing
 We welcome contributions and feedback. Here's how you can help:
