@@ -22,6 +22,10 @@ Now your model is set up and ready to be tuned.
 ## Input Set up
 Using the ScenarioGuide file, you can toggle the parameters/coefficients to be tested in IFs historical validation. Other options are also available, such as limits & steps.
 
+#### Multithreading
+It is possible to run multiple IFs model runs in parallel. 
+
+
 # Contributing
 We welcome contributions and feedback. Here's how you can help:
 - [Report issues](<https://github.com/PardeeCenterDU/IFsAutoTune/issues>)  
