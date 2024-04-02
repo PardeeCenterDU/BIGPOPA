@@ -33,6 +33,9 @@ Through this method, you are able to retain the original files under the RUNFILE
 ##### Method 2. Setting up multiple IFsCore in the device (current implementation)
 This is a simpler approach as you are merely copying and pasting the same IFsCore structure. In the model initilization stage in Python, you will have to input different paths. The downside of this approach is you are wasting extra storage space (around 42.5mb for files under DATA/ folder).
 
+Here is a brief introduction on how this works- 
+A generator is being used to pass a batch of combinations to a Queue. Several models are being initialized by using different model paths, and they maintain their instances througout the whole process. Each model (worker) continuously and independently query the Queue to get one combination of parameters & coefficients and run the model. The Queue checks itself every minute to see if it has been emptied, otherwise it asks for the generator to get another batch of the combinations (this step avoid storing all the combinations in the memory at once). When no combination is left from the generator, the Queue put a signal in itself to let each worker know. Once every worker gets the same None signal, the whole process stops. 
+
 # Contributing
 We welcome contributions and feedback. Here's how you can help:
 - [Report issues](<https://github.com/PardeeCenterDU/IFsAutoTune/issues>)  
