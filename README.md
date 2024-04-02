@@ -12,8 +12,8 @@ The IFsCore follows the same directory structure as the development version of I
   * [netcoreapp2.2](./IFsCore/netcoreapp2.2) this is where the core model code lives
   * [RUNFILES](./IFsCore/RUNFILES) for safty, put all your files under the RUNFILES folder after model rebuilt (e.g., 1995)
   * [Scenario](./IFsCore/Scenario) empty by default, Working.sce will be added to run parameter & coefficient tuning during each model run
-  * [Parquetnetcoreapp2.2](./IFsCore/Parquetnetcoreapp2.2) a .NET programe (.dll) that reads the .parquet file and convert it into CSV format
-  * [Output](./IFsCore/Output) this is a default, yet optional, output folder that stores each model run's results and settings under the same place
+* [Parquetnetcoreapp2.2](./IFsCore/Parquetnetcoreapp2.2) a .NET programe (.dll) that reads the .parquet file and convert it into CSV format. This can be put anywhere.
+* [Output](./IFsCore/Output) this is a default output folder that stores each model run's results and settings under the same place. This can be put anywhere.
 
 Now your model is set up and ready to be tuned.
 ## Input Set up
@@ -30,8 +30,8 @@ It is possible to run multiple IFs model runs in parallel.
    'dotnet.exe "C:/Users/Public/IFsCore/netcoreapp2.2/ifs.dll" 5 2030 **0** false false 1 False'
    
 Through this method, you are able to retain the original files under the RUNFILES folder. Each model run will only occur under its associated session number. However, you will need to make changes to python classes and functions so that output of each model are properly handled. 
-##### Method 2. Setting up multiple IFsCore in the device
-This is a simpler approach as you are merely copying and pasting the same IFsCore structure. In the model initilization stage in Python, you will have to input different paths. The downside of this approach is you are wasting extra storage space.
+##### Method 2. Setting up multiple IFsCore in the device (current implementation)
+This is a simpler approach as you are merely copying and pasting the same IFsCore structure. In the model initilization stage in Python, you will have to input different paths. The downside of this approach is you are wasting extra storage space (around 42.5mb for files under DATA/ folder).
 
 # Contributing
 We welcome contributions and feedback. Here's how you can help:
