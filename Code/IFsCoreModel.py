@@ -25,6 +25,8 @@ class IFsModel:
             os.makedirs(self.dir_output)
         # baserun
         self.dir_baserun = os.path.join(self.dir_runfiles,"IFsBase.run.db")
+        # working run
+        self.dir_workingrun = os.path.join(self.dir_runfiles,"Working.run.db")
         # parquet file converter 
         self.dir_parquetcv = pqconverter_dir
         self.dir_parquetcv_dll = os.path.join(self.dir_parquetcv, "ParquetReader.dll")
@@ -32,12 +34,16 @@ class IFsModel:
         # dictionaries to store param & coef
         self.parameters = {}  
         self.coefficients = {} 
+        self.param_dim = {}
         # list of output variables
         self.outputVars = output_var
 
     def get_param_coef(self, parameters, coefficients):
         self.parameters = parameters
         self.coefficients = coefficients
+
+    def get_param_dim(self, param_setting):
+        self.param_dim = param_setting  
 
     def generate_sce_id(self):
         """        
@@ -59,13 +65,18 @@ class IFsModel:
         sce_par = []
         # add parameters
         for param in self.parameters:
-            if round(self.parameters[param], 6)==0:
+            param_v = self.parameters[param]
+            param_dim = self.param_dim[param]
+            if round(param_v, 6)==0:
                 val_par_formatted = "0" 
             else:
-                val_par_formatted = format(self.parameters[param], '.6f')
+                val_par_formatted = format(param_v, '.6f')
                 val_par_formatted = val_par_formatted.rstrip('0').rstrip('.')
             n_vals = self.yr_forecast - self.yr_base + 1
-            line_sce_par = "".join( [f"CUSTOM,{param},World,", ",".join([val_par_formatted] * n_vals), "\n"])
+            if param_dim==1 :
+                line_sce_par = "".join( [f"CUSTOM,{param},World,", ",".join([val_par_formatted] * n_vals), "\n"])
+            elif param_dim==0 :
+                line_sce_par = "".join( [f"CUSTOM,{param},", ",".join([val_par_formatted] * n_vals), "\n"])
             sce_par.append(line_sce_par)
         # add coef in the comments
         sce_par.append("COMMENT,START\n") 
@@ -84,7 +95,11 @@ class IFsModel:
         return sce_id, sce_file_path
 
     def update_beta_model(self):
-        '''Update beta values in the IFsBase.run.db file'''
+        '''
+        Use IFsBase.run to reset the Working.run; 
+        And update beta values in the Working.run.db file.
+        '''
+        #shutil.copy(self.dir_baserun, self.dir_workingrun)
         conn = sqlite3.connect(self.dir_baserun)
         for coef_id in self.coefficients:
             val_coef = round(self.coefficients[coef_id], 5)
@@ -130,11 +145,10 @@ class IFsModel:
     def save_run(self, scenario_id, scenario_path):   
         scenario_save_dir = os.path.join(self.dir_output, scenario_id)
         os.makedirs(scenario_save_dir, exist_ok=False)
-        workingrun_path = os.path.join(self.dir_runfiles,"Working.run.db")
         sce_save_dir = os.path.join(scenario_save_dir, f"{scenario_id}.sce")
         shutil.copy2(scenario_path, sce_save_dir)
         run_save_dir = os.path.join(scenario_save_dir, "Working.run.db") 
-        shutil.copy2(workingrun_path, run_save_dir) 
+        shutil.copy2(self.dir_workingrun, run_save_dir) 
         return scenario_save_dir
     
     def read_var(self, outputFile, scenario_save_dir):

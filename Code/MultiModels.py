@@ -14,8 +14,9 @@ def enqueuer(queue, combinations_generator, n_workers):
     for _ in range(n_workers):
         queue.put(None)
 
-def model_runner(queue, model_path, output_varlist):
+def model_runner(queue, model_path, output_varlist, param_dim_dict):
     model = IFsModel(root_dir = model_path, output_var =  output_varlist)
+    model.get_param_dim(param_dim_dict)
     while True:
         param_coef_comb = queue.get()
         if param_coef_comb is None:
@@ -36,14 +37,15 @@ if __name__ == "__main__":
     ifs_input.load_parameters_excel(dir_init_excel, sheet_name='Para_Demo_Global')
     ifs_input.load_coefficients_excel(dir_init_excel, sheet_name='Coef_Demo_Global')
     varList = ifs_input.load_outputvars_excel(dir_init_excel, sheet_name = "Var_Output")
+    param_dim_dict = ifs_input.get_param_dim()
     #
     queue = Queue()
     combinations_generator = ifs_input.param_coef_combo_generator()
     # Start runner, each with its own model instance
-    model_paths = [f"C:/Users/Public/IFsCore0{i}/" for i in range(4)]
+    model_paths = [f"C:/Users/Public/IFsCore0{i}/" for i in range(5)]
     processes = []
     for path in model_paths:
-        p = Process(target=model_runner, args=(queue, path, varList))
+        p = Process(target=model_runner, args=(queue, path, varList, param_dim_dict))
         p.start()
         processes.append(p)
     # Feed all combinations into the queue
