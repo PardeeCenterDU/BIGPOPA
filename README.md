@@ -1,6 +1,12 @@
-With user-selected parameters and coefficients along with their corresponding input ranges, this app auto-tunes the model performance of the International Futures (IFs) tool for its short-term (20-year) projection. 
+
+# Warning
+This app has been upgraded and migrated to https://github.com/quciet/ifs_autotune, a local-first desktop application for automating and optimizing IFs model runs.
+
+
+
 
 # Getting Started
+With user-selected parameters and coefficients along with their corresponding input ranges, this app auto-tunes the model performance of the International Futures (IFs) tool for its short-term (20-year) projection. 
 
 ## Model Set up
 Follow and create a same folder structure locally (IFsCore). With IFs development version, rebuild the base to a historical year (e.g., 1995), then copy and past required files to IFsCore.
